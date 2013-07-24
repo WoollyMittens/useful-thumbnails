@@ -8,6 +8,7 @@
 	@import "compass/utilities";
 
 	.thumbnails {
+		@include border-radius(4px);
 		display : block;
 		margin : 0;
 		padding : 0;
@@ -36,28 +37,36 @@
 			}
 		}
 		button {
-			border : 0;
-			background  : #ccc none;
-			color : #fff;
+			@include background(linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%));
+			@include box-shadow(0 1px 3px #000000);
+			@include transition-property(opacity);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease);
+			background-color : #999;
+			border : solid 1px #333;
+			color : #333;
 			display : block;
 			font-size : 16px;
 			font-weight : bold;
 			overflow : hidden;
 			position : absolute;
+			text-shadow : 1px 1px #ccc;
 			width : 32px;
 			&.tn-enabled {
-				visibility : visible;
+				@include opacity(1);
 			}
 			&.tn-disabled {
-				visibility : hidden;
+				@include opacity(0.5);
 			}
 			&.tn-left {
+				@include border-radius(4px 0 0 4px);
 				bottom : 0;
 				left : 0;
 				top : 0;
 				width : 10%;
 			}
 			&.tn-right {
+				@include border-radius(0 4px 4px 0);
 				bottom : 0;
 				right : 0;
 				top : 0;
