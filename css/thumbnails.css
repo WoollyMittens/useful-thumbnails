@@ -1,0 +1,66 @@
+/*
+	Reference Styling for An Interactive Row of Thumbnails
+*/
+@media all {
+  .thumbnails {
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  .thumbnails * {
+    margin: 0;
+    padding: 0;
+  }
+  .thumbnails ul {
+    display: block;
+    margin: 0 auto;
+    padding: 0 10%;
+    white-space: nowrap;
+    width: auto;
+  }
+  .thumbnails ul li {
+    -webkit-transition: margin-left ease;
+    -webkit-transition-delay: 500ms;
+    -moz-transition: margin-left ease 500ms;
+    -o-transition: margin-left ease 500ms;
+    transition: margin-left ease 500ms;
+    display: inline-block;
+    list-style-type: none;
+  }
+  .thumbnails ul li img {
+    margin-left: 1px;
+    vertical-align: middle;
+  }
+  .thumbnails button {
+    border: 0;
+    background: #ccc none;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    overflow: hidden;
+    position: absolute;
+    width: 32px;
+  }
+  .thumbnails button.tn-enabled {
+    visibility: visible;
+  }
+  .thumbnails button.tn-disabled {
+    visibility: hidden;
+  }
+  .thumbnails button.tn-left {
+    bottom: 0;
+    left: 0;
+    top: 0;
+    width: 10%;
+  }
+  .thumbnails button.tn-right {
+    bottom: 0;
+    right: 0;
+    top: 0;
+    width: 10%;
+  }
+}
