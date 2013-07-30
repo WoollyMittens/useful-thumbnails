@@ -48,78 +48,70 @@
 			config.parent.appendChild(config.rightButton);
 		},
 		measure : function (config) {
-			var a, b, items;
-			// measure the buttons
-			config.buttonSize = config.leftButton.offsetWidth + config.rightButton.offsetWidth;
-			// determine the step size
-			config.stepSize = config.parent.offsetWidth - config.buttonSize;
-			// make the width include the buttons
-			config.totalSize = 0;
-			// add every individual thumbnail to the total
-			var items = config.list.getElementsByTagName('li');
-			for (a = 0, b = items.length; a < b; a += 1) {
-				config.totalSize += items[a].offsetWidth;
+			var a, b, stop = false, m = {}, listItems, itemWidth = 0;
+			// get the component dimensions
+			m.currentLeft = parseInt(config.list.style.marginLeft);
+			m.buttonsWidth = config.leftButton.offsetWidth + config.rightButton.offsetWidth;
+			m.pageWidth = config.parent.offsetWidth - m.buttonsWidth;
+			m.totalWidth = 0;
+			m.pageLeft = 0;
+			listItems = config.list.getElementsByTagName('li');
+			// determine the length of the scroller
+			for (a = 0, b = listItems.length; a < b; a += 1) {
+				// add the item's width to the max distance
+				itemWidth = listItems[a].offsetWidth;
+				m.totalWidth += itemWidth;
+				// add the item's width to the page distance
+				if (m.totalWidth > -m.currentLeft) {
+					if (m.pageLeft + itemWidth < m.pageWidth && !stop) {
+						m.pageLeft += itemWidth;
+					} else {
+						stop = true;
+					}
+				}
 			}
-			// store the scroll limit
-			config.scrollLimit = config.totalSize - config.stepSize;
-			// store the total size
-			config.totalSize += config.buttonSize;
+			// return the measurements
+			return m;
 		},
 		left : function (config) {
 			return function () {
-				var current, next, limit, step;
-				// get the current position of the scroller
-				current = parseInt(config.list.style.marginLeft);
-				// measure the length of the scroller
-				thumbnails.measure(config);
-				// determine the step size
-				step = config.stepSize;
-				// determine the limit
-				limit = -config.scrollLimit;
-				// calculate the new positions
-				next = current - step;
-				// if the new position if beyond the limit
-				if (next < limit) {
-					// disable the button
-					config.leftButton.className = config.leftButton.className.replace(/enabled/, 'disabled');
-					// use the limit instead
-					next = limit;
-				} else {
+				// calculate the positions
+				var m = thumbnails.measure(config);
+				// limit the distance
+				if (m.currentLeft - m.pageLeft > m.pageWidth - m.totalWidth) {
+					// move the collection to the left
+					useful.css.setRules(config.list, {'marginLeft' : (m.currentLeft - m.pageLeft) + 'px'});
 					// enable the button
 					config.leftButton.className = config.leftButton.className.replace(/disabled/, 'enabled');
 					config.rightButton.className = config.rightButton.className.replace(/disabled/, 'enabled');
+				} else {
+					// stop the position at its max
+					useful.css.setRules(config.list, {'marginLeft' : (m.pageWidth - m.totalWidth) + 'px'});
+					// disable the button
+					config.leftButton.className = config.leftButton.className.replace(/enabled/, 'disabled');
 				}
-				// apply the new position
-				useful.css.setRules(config.list, {'marginLeft' : next + 'px'});
-				// cancel the actual click
+				// cancel the click
 				return false;
 			}
 		},
 		right : function (config) {
 			return function () {
-				var current, next, step;
-				// get the current position of the scroller
-				current = parseInt(config.list.style.marginLeft);
-				// measure the length of the scroller
-				thumbnails.measure(config);
-				// determine the step size
-				step = config.stepSize;
-				// calculate the new positions
-				next = current + step;
-				// if the new position if beyond the limit
-				if (next > 0) {
-					// disable the button
-					config.rightButton.className = config.rightButton.className.replace(/enabled/, 'disabled');
-					// use the limit instead
-					next = 0;
-				} else {
+				// calculate the positions
+				var m = thumbnails.measure(config);
+				// limit the distance
+				if (m.currentLeft + m.pageLeft < 0) {
+					// move the collection to the right
+					useful.css.setRules(config.list, {'marginLeft' : (m.currentLeft + m.pageLeft) + 'px'});
 					// enable the button
 					config.leftButton.className = config.leftButton.className.replace(/disabled/, 'enabled');
 					config.rightButton.className = config.rightButton.className.replace(/disabled/, 'enabled');
+				} else {
+					// stop the position at its max
+					useful.css.setRules(config.list, {'marginLeft' : '0px'});
+					// disable the button
+					config.rightButton.className = config.rightButton.className.replace(/enabled/, 'disabled');
 				}
-				// apply the new position
-				useful.css.setRules(config.list, {'marginLeft' : next + 'px'});
-				// cancel the actual click
+				// cancel the click
 				return false;
 			}
 		}
