@@ -50,7 +50,7 @@
 		measure : function (config) {
 			var a, b, stop = false, m = {}, listItems, itemWidth = 0;
 			// get the component dimensions
-			m.currentLeft = parseInt(config.list.style.marginLeft);
+			m.currentLeft = parseInt(config.list.style.marginLeft, 10);
 			m.buttonsWidth = config.leftButton.offsetWidth + config.rightButton.offsetWidth;
 			m.pageWidth = config.parent.offsetWidth - m.buttonsWidth;
 			m.totalWidth = 0;
@@ -92,7 +92,7 @@
 				}
 				// cancel the click
 				return false;
-			}
+			};
 		},
 		right : function (config) {
 			return function () {
@@ -113,7 +113,7 @@
 				}
 				// cancel the click
 				return false;
-			}
+			};
 		}
 	};
 
