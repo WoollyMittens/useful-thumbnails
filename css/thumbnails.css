@@ -43,14 +43,16 @@
     vertical-align: middle;
   }
   .thumbnails button {
-    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0px, #ffffff), color-stop(1px, #ffffff), color-stop(1px, #ebebeb), color-stop(100%, #9f9f9f));
-    background: -webkit-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
-    background: -moz-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
-    background: -o-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
-    background: linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(0.5%, #ffffff), color-stop(0.5%, #cccccc), color-stop(99.5%, #999999), color-stop(100%, #666666));
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #cccccc 0.5%, #999999 99.5%, #666666 100%);
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #cccccc 0.5%, #999999 99.5%, #666666 100%);
+    background: -o-linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #cccccc 0.5%, #999999 99.5%, #666666 100%);
+    background: linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #cccccc 0.5%, #999999 99.5%, #666666 100%);
     -webkit-box-shadow: 0 1px 3px black;
     -moz-box-shadow: 0 1px 3px black;
     box-shadow: 0 1px 3px black;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
     -webkit-transition-property: opacity;
     -moz-transition-property: opacity;
     -o-transition-property: opacity;
@@ -63,9 +65,10 @@
     -moz-transition-timing-function: ease;
     -o-transition-timing-function: ease;
     transition-timing-function: ease;
-    background-color: #999;
+    background-color: #ccc;
     border: solid 1px #333;
     color: #333;
+    cursor: pointer;
     display: block;
     font-size: 16px;
     font-weight: bold;
@@ -74,13 +77,16 @@
     text-shadow: 1px 1px #ccc;
     width: 32px;
   }
-  .thumbnails button.tn-enabled {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-    opacity: 1;
+  .thumbnails button.tn-enabled:hover {
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(0.5%, #ffffff), color-stop(0.5%, #999999), color-stop(99.5%, #cccccc), color-stop(100%, #666666));
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #999999 0.5%, #cccccc 99.5%, #666666 100%);
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #999999 0.5%, #cccccc 99.5%, #666666 100%);
+    background: -o-linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #999999 0.5%, #cccccc 99.5%, #666666 100%);
+    background: linear-gradient(top, #ffffff 0%, #ffffff 0.5%, #999999 0.5%, #cccccc 99.5%, #666666 100%);
   }
   .thumbnails button.tn-disabled {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-    opacity: 0.5;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+    opacity: 0.8;
   }
   .thumbnails button.tn-left {
     -webkit-border-radius: 4px 0 0 4px;

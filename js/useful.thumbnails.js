@@ -37,13 +37,13 @@
 			// add the left button
 			config.leftButton = document.createElement('button');
 			config.leftButton.innerHTML = '&lt;';
-			config.leftButton.className = 'tn-left tn-enabled';
+			config.leftButton.className = 'tn-left tn-disabled';
 			config.leftButton.onclick = this.left(config);
 			config.parent.appendChild(config.leftButton);
 			// add the right button
 			config.rightButton = document.createElement('button');
 			config.rightButton.innerHTML = '&gt;';
-			config.rightButton.className = 'tn-right tn-disabled';
+			config.rightButton.className = 'tn-right tn-enabled';
 			config.rightButton.onclick = this.right(config);
 			config.parent.appendChild(config.rightButton);
 		},
@@ -78,15 +78,15 @@
 				// calculate the positions
 				var m = thumbnails.measure(config);
 				// limit the distance
-				if (m.currentLeft - m.pageLeft > m.pageWidth - m.totalWidth) {
-					// move the collection to the left
-					useful.css.setRules(config.list, {'marginLeft' : (m.currentLeft - m.pageLeft) + 'px'});
+				if (m.currentLeft + m.pageLeft < 0) {
+					// move the collection to the right
+					useful.css.setRules(config.list, {'marginLeft' : (m.currentLeft + m.pageLeft) + 'px'});
 					// enable the button
 					config.leftButton.className = config.leftButton.className.replace(/disabled/, 'enabled');
 					config.rightButton.className = config.rightButton.className.replace(/disabled/, 'enabled');
 				} else {
 					// stop the position at its max
-					useful.css.setRules(config.list, {'marginLeft' : (m.pageWidth - m.totalWidth) + 'px'});
+					useful.css.setRules(config.list, {'marginLeft' : '0px'});
 					// disable the button
 					config.leftButton.className = config.leftButton.className.replace(/enabled/, 'disabled');
 				}
@@ -99,15 +99,15 @@
 				// calculate the positions
 				var m = thumbnails.measure(config);
 				// limit the distance
-				if (m.currentLeft + m.pageLeft < 0) {
-					// move the collection to the right
-					useful.css.setRules(config.list, {'marginLeft' : (m.currentLeft + m.pageLeft) + 'px'});
+				if (m.currentLeft - m.pageLeft > m.pageWidth - m.totalWidth) {
+					// move the collection to the left
+					useful.css.setRules(config.list, {'marginLeft' : (m.currentLeft - m.pageLeft) + 'px'});
 					// enable the button
 					config.leftButton.className = config.leftButton.className.replace(/disabled/, 'enabled');
 					config.rightButton.className = config.rightButton.className.replace(/disabled/, 'enabled');
 				} else {
 					// stop the position at its max
-					useful.css.setRules(config.list, {'marginLeft' : '0px'});
+					useful.css.setRules(config.list, {'marginLeft' : (m.pageWidth - m.totalWidth) + 'px'});
 					// disable the button
 					config.rightButton.className = config.rightButton.className.replace(/enabled/, 'disabled');
 				}

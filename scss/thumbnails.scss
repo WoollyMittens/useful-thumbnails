@@ -35,14 +35,16 @@
 			}
 		}
 		button {
-			@include background(linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%));
+			@include background(linear-gradient(top, #fff 0%, #fff 0.5%, #ccc 0.5%, #999 99.5%, #666 100%));
 			@include box-shadow(0 1px 3px #000000);
+			@include opacity(1);
 			@include transition-property(opacity);
 			@include transition-duration(0.3s);
 			@include transition-timing-function(ease);
-			background-color : #999;
+			background-color : #ccc;
 			border : solid 1px #333;
 			color : #333;
+			cursor : pointer;
 			display : block;
 			font-size : 16px;
 			font-weight : bold;
@@ -50,11 +52,11 @@
 			position : absolute;
 			text-shadow : 1px 1px #ccc;
 			width : 32px;
-			&.tn-enabled {
-				@include opacity(1);
+			&.tn-enabled:hover {
+				@include background(linear-gradient(top, #fff 0%, #fff 0.5%, #999 0.5%, #ccc 99.5%, #666 100%));
 			}
 			&.tn-disabled {
-				@include opacity(0.5);
+				@include opacity(0.8);
 			}
 			&.tn-left {
 				@include border-radius(4px 0 0 4px);
