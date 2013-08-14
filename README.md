@@ -29,8 +29,6 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 
 ### Constructor
 
-This is the safest way of starting the script, but allows for only one target element at a time.
-
 ```javascript
 var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
 	'square' : true,
@@ -48,20 +46,19 @@ var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
 
 **event : {event object}** - The event object of the click.
 
+This is the safest way of starting the script, but allows for only one target element at a time.
 
 ### Methods
 
 #### Start
 
-Start the functionality
-
 ```javascript
 thumbnails.start();
 ```
 
-#### Focus
+Start the functionality
 
-Highlights and centres a specific thumbnail.
+#### Focus
 
 ```javascript
 thumbnails.focus(index);
@@ -69,21 +66,23 @@ thumbnails.focus(index);
 
 **index : {integer}** - The index of the thumbnail to centre and highlight.
 
-#### Left
+Highlights and centres a specific thumbnail.
 
-Scrolls the list of thumbnails one page to the left.
+#### Left
 
 ```javascript
 thumbnails.left();
 ```
 
-#### Right
+Scrolls the list of thumbnails one page to the left.
 
-Scrolls the list of thumbnails one page to the right.
+#### Right
 
 ```javascript
 thumbnails.right();
 ```
+
+Scrolls the list of thumbnails one page to the right.
 
 ## License
 This work is licensed under a Creative Commons Attribution 3.0 Unported License. The latest version of this and other scripts by the same author can be found at http://www.woollymittens.nl/
