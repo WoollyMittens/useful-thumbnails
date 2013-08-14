@@ -36,6 +36,8 @@ var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
 });
 ```
 
+This is the safest way of starting the script, but allows for only one target element at a time.
+
 **id : {string}** - The ID attribute of an element somewhere in the document.
 
 **square : {boolean}** - Optional boolean to centre images into fixed squares or retain their irregular shapes.
@@ -45,8 +47,6 @@ var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
 **index : {integer}** - The index of the thumbnail that was selected.
 
 **event : {event object}** - The event object of the click.
-
-This is the safest way of starting the script, but allows for only one target element at a time.
 
 ### Methods
 
@@ -64,9 +64,9 @@ Start the functionality
 thumbnails.focus(index);
 ```
 
-**index : {integer}** - The index of the thumbnail to centre and highlight.
-
 Highlights and centres a specific thumbnail.
+
+**index : {integer}** - The index of the thumbnail to centre and highlight.
 
 #### Left
 
