@@ -40,9 +40,9 @@ This is the safest way of starting the script, but allows for only one target el
 
 **id : {string}** - The ID attribute of an element somewhere in the document.
 
-**square : {boolean}** - Whether images are centred into fixed squares or retain their irregular shapes.
+**square : {boolean}** - Optional boolean to centre images into fixed squares or retain their irregular shapes.
 
-**onselected : {function}** - A callback to run when images are selected.
+**onselected : {function}** - An optional callback to run when images are selected.
 
 **index : {integer}** - The index of the thumbnail that was selected.
 
@@ -51,11 +51,15 @@ This is the safest way of starting the script, but allows for only one target el
 
 ### Methods
 
+#### Start
+
 ```javascript
 thumbnails.start();
 ```
 
 Start the functionality
+
+#### Focus
 
 ```javascript
 thumbnails.focus(index);
@@ -65,12 +69,15 @@ Highlights and centres a specific thumbnail.
 
 **index : {integer}** - The index of the thumbnail to centre and highlight.
 
+#### Left
 
 ```javascript
 thumbnails.left();
 ```
 
 Scrolls the list of thumbnails one page to the left.
+
+#### Right
 
 ```javascript
 thumbnails.right();

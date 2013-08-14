@@ -18,6 +18,9 @@
 		this.cfg = cfg;
 		// methods
 		this.start = function () {
+			// make sure the default options are known
+			this.cfg.square = this.cfg.square || false;
+			this.cfg.onselected = this.cfg.onselected || function () {};
 			// apply the options
 			this.obj.className += (this.cfg.square) ? ' tn-square' : '';
 			// clean end of line markers from the dom
