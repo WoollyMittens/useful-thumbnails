@@ -1,6 +1,6 @@
 # useful.thumbnails.js: Scrolling Thumbnails
 
-Scrolling through a long list of thumbnails using paging controls.
+Browsing through a long list of irregularly shaped thumbnails using scrolling controls.
 
 Try the <a href="http://www.woollymittens.nl/useful/default.php?url=sort">sort demo</a>.
 
@@ -27,46 +27,54 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 <![endif]-->
 ```
 
-### Using vanilla JavaScript
-
-This is the safest way of starting the script, but allows for only one target element at a time.
+### Constructor
 
 ```javascript
-var parent = documentGetElementById('id');
-useful.thumbnails.start(parent, {});
+var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
+	'square' : true,
+	'onselected' : function (index, event) {}
+});
 ```
 
 **id : {string}** - The ID attribute of an element somewhere in the document.
 
-**parent : {DOM node}** - The DOM element around which the functionality is centred.
+**square : {boolean}** - Whether images are centred into fixed squares or retain their irregular shapes.
 
-### Using document.querySelectorAll
+**onselected : {function}** - A callback to run when images are selected.
 
-This method allows CSS Rules to be used to apply the script to one or more nodes at the same time.
+**index : {integer}** - The index of the thumbnail that was selected.
 
-```javascript
-useful.css.select({
-	rule : '.thumbnails',
-	handler : useful.thumbnails.start,
-	data : {}
-});
-```
+**event : {event object}** - The event object of the click.
 
-**rule : {string}** - The CSS Rule for the intended target(s) of the script.
+This is the safest way of starting the script, but allows for only one target element at a time.
 
-**handler : {function}** - The public function that starts the script.
-
-**data : {object}** - Name-value pairs with configuration data.
-
-### Using jQuery
-
-This method is similar to the previous one, but uses jQuery for processing the CSS rule.
+### Methods
 
 ```javascript
-$('.thumbnails').each(function (index, element) {
-	useful.thumbnails.start(element, {});
-});
+thumbnails.start();
 ```
+
+Start the functionality
+
+```javascript
+thumbnails.focus(index);
+```
+
+**index : {integer}** - The index of the thumbnail to centre and highlight.
+
+Highlights and centres a specific thumbnail.
+
+```javascript
+thumbnails.left();
+```
+
+Scrolls the list of thumbnails one page to the left.
+
+```javascript
+thumbnails.right();
+```
+
+Scrolls the list of thumbnails one page to the right.
 
 ## License
 This work is licensed under a Creative Commons Attribution 3.0 Unported License. The latest version of this and other scripts by the same author can be found at http://www.woollymittens.nl/

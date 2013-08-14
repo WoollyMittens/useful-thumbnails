@@ -1,12 +1,19 @@
 /*
 	Reference Styling for An Interactive Row of Thumbnails
 */
+
 @media all {
+
 	@import "compass/css3";
 	@import "compass/utilities";
+	@import "definitions";
+	@import "buttons";
+
+	$icon-size : 128;
+
 	.thumbnails {
-		@include border-radius(4px);
 		display : block;
+		height : $icon-size + px;
 		margin : 0;
 		padding : 0;
 		overflow : hidden;
@@ -18,63 +25,91 @@
 			padding : 0;
 		}
 		ul {
+			@include transition(margin-left ease 500ms);
 			display : block;
-			margin : 0 auto;
+			margin : 0;
 			padding : 0 10%;
 			white-space : nowrap;
 			width : auto;
 			li {
-				@include transition(margin-left ease 500ms);
 				display : inline-block;
 				list-style-type : none;
-				a {}
-				img {
+				a {
+					background : $color-passive;
+					display : inline-block;
 					margin-left : 1px;
-					vertical-align : middle;
+					img {
+						@include transition(opacity ease 500ms);
+						border : none;
+						height : $icon-size + px;
+						vertical-align : middle;
+					}
+					&:hover img, &.tn-active img {
+						@include opacity(0.5);
+					}
 				}
 			}
 		}
 		button {
-			@include background(linear-gradient(top, #fff 0%, #fff 0.5%, #ccc 0.5%, #999 99.5%, #666 100%));
-			@include box-shadow(0 1px 3px #000000);
-			@include opacity(1);
-			@include transition-property(opacity);
-			@include transition-duration(0.3s);
-			@include transition-timing-function(ease);
-			background-color : #ccc;
-			border : solid 1px #333;
-			color : #333;
+			@include iconParent(48);
 			cursor : pointer;
+			background : $color-passive;
 			display : block;
-			font-size : 16px;
-			font-weight : bold;
-			overflow : hidden;
+			height : auto;
 			position : absolute;
-			text-shadow : 1px 1px #ccc;
-			width : 32px;
+			&:before {
+				@include iconCenter(32);
+				background-image : url(../img/thumbnails.png);
+			}
 			&.tn-enabled:hover {
-				@include background(linear-gradient(top, #fff 0%, #fff 0.5%, #999 0.5%, #ccc 99.5%, #666 100%));
+				background : $color-hover;
 			}
 			&.tn-disabled {
-				@include opacity(0.8);
+				background : $color-disabled;
 			}
 			&.tn-left {
-				@include border-radius(4px 0 0 4px);
 				bottom : 0;
 				left : 0;
 				top : 0;
 				width : 10%;
+				&:before {
+					background-position : 0 0;
+				}
 			}
 			&.tn-right {
-				@include border-radius(0 4px 4px 0);
 				bottom : 0;
 				right : 0;
 				top : 0;
 				width : 10%;
+				&:before {
+					background-position : 0 -32px;
+				}
+			}
+		}
+		&.tn-square {
+			ul {
+				li {
+					a {
+						height : $icon-size + px;
+						overflow : hidden;
+						position : relative;
+						width : $icon-size + px;
+						img {
+							height : auto;
+							left : 50%;
+							margin-left : -($icon-size/2) + px;
+							margin-top : -($icon-size/2) + px;
+							position : absolute;
+							top : 50%;
+						}
+					}
+				}
 			}
 		}
 	}
+
 }
+
 @media (min-width: 1200px) {}
 @media (min-width: 980px) and (max-width: 1199px) {}
 @media (min-width: 768px) and (max-width: 979px) {}

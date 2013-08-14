@@ -22,37 +22,45 @@
 		<section class="example example-left">
 			<article>
 				<h2>Scrolling Thumbnails</h2>
-				<p>Scrolling through a long list of thumbnails using paging controls.</p>
+				<p>Browsing through a long list of irregularly shaped thumbnails using scrolling controls.</p>
 				<p><a class="button downloadButton" href="http://github.com/WoollyMittens/useful-thumbnails" target="_blank">Download (GitHub)</a></p>
 			</article>
 			<aside>
 
 				<!-- Cut below this -->
 				<style>@import url("./css/thumbnails.css")</style>
-				<figure class="thumbnails">
+				<figure class="thumbnails" id="thumbnailsExample">
 					<ul>
-						<li><img alt="" src="./img/figure_0.jpg"/></li>
-						<li><img alt="" src="./img/figure_1.jpg"/></li>
-						<li><img alt="" src="./img/figure_2.jpg"/></li>
-						<li><img alt="" src="./img/figure_3.jpg"/></li>
-						<li><img alt="" src="./img/figure_4.jpg"/></li>
-						<li><img alt="" src="./img/figure_5.jpg"/></li>
-						<li><img alt="" src="./img/figure_6.jpg"/></li>
-						<li><img alt="" src="./img/figure_7.jpg"/></li>
-						<li><img alt="" src="./img/figure_8.jpg"/></li>
-						<li><img alt="" src="./img/figure_9.jpg"/></li>
+						<li><a href="#"><img alt="" src="./img/photo_0.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_1.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_2.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_3.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_4.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_5.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_6.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_7.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_8.jpg"/></a></li>
+						<li><a href="#"><img alt="" src="./img/photo_9.jpg"/></a></li>
 					</ul>
 				</figure>
 				<script src="./js/useful.thumbnails.js"></script>
 				<script>
 				//<!--
-					useful.css.select({
-						rule : '.thumbnails',
-						handler : useful.thumbnails.start,
-						data : {
-							'foo' : 'bar'
-						}
+
+					// creates a new instance of the script
+					var thumbnails = new useful.Thumbnails( document.getElementById('thumbnailsExample'), {
+						// whether images are centred into fixed squares
+						'square' : true,
+						// a callback to run when images are selected
+						'onselected' : function (index, event) { console.log('thumbnail:', index, event); }
 					});
+
+					// starts the script
+					thumbnails.start();
+
+					// highlights and centres a specific thumbnail
+					thumbnails.focus(2);
+
 				//-->
 				</script>
 				<!-- Cut above this -->
