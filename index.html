@@ -43,24 +43,20 @@
 						<li><a href="#"><img alt="" src="./img/photo_9.jpg"/></a></li>
 					</ul>
 				</figure>
-				<script src="./js/useful.thumbnails.js"></script>
+				<script src="./js/thumbnails.min.js"></script>
 				<script>
 				//<!--
-
-					// creates a new instance of the script
+					// create a new instance of the script
 					var thumbnails = new useful.Thumbnails( document.getElementById('thumbnailsExample'), {
 						// whether images are centred into fixed squares
 						'square' : true,
 						// a callback to run when images are selected
 						'onselected' : function (index, event) { console.log('thumbnail:', index, event); }
 					});
-
-					// starts the script
+					// start the instance
 					thumbnails.start();
-
-					// highlights and centres a specific thumbnail
+					// highlight and centre a specific thumbnail
 					thumbnails.focus(2);
-
 				//-->
 				</script>
 				<!-- Cut above this -->

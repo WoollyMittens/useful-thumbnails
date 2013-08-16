@@ -122,12 +122,12 @@
 			// limit the distance
 			if (m.currentLeft + m.pageLeft < 0) {
 				// move the collection to the right
-				transitions.byRules(this.cfg.list, {'marginLeft' : (m.currentLeft + m.pageLeft) + 'px'});
+				useful.transitions.byRules(this.cfg.list, {'marginLeft' : (m.currentLeft + m.pageLeft) + 'px'});
 				// enable the buttons
 				this.enableBoth();
 			} else {
 				// stop the position at its max
-				transitions.byRules(this.cfg.list, {'marginLeft' : '0px'});
+				useful.transitions.byRules(this.cfg.list, {'marginLeft' : '0px'});
 				// disable the left button
 				this.enableRight();
 			}
@@ -140,12 +140,12 @@
 			// limit the distance
 			if (m.currentLeft - m.pageLeft > m.maxLeft) {
 				// move the collection to the left
-				transitions.byRules(this.cfg.list, {'marginLeft' : (m.currentLeft - m.pageLeft) + 'px'});
+				useful.transitions.byRules(this.cfg.list, {'marginLeft' : (m.currentLeft - m.pageLeft) + 'px'});
 				// enable the button
 				this.enableBoth();
 			} else {
 				// stop the position at its max
-				transitions.byRules(this.cfg.list, {'marginLeft' : m.maxLeft + 'px'});
+				useful.transitions.byRules(this.cfg.list, {'marginLeft' : m.maxLeft + 'px'});
 				// disable the right button
 				this.enableLeft();
 			}
@@ -165,17 +165,17 @@
 			// limit the distance
 			if (centerLeft > 0) {
 				// stop the position at its max
-				transitions.byRules(this.cfg.list, {'marginLeft' : '0px'});
+				useful.transitions.byRules(this.cfg.list, {'marginLeft' : '0px'});
 				// disable the left button
 				this.enableRight();
 			} else if (centerLeft < m.maxLeft) {
 				// move the collection to the left
-				transitions.byRules(this.cfg.list, {'marginLeft' : m.maxLeft + 'px'});
+				useful.transitions.byRules(this.cfg.list, {'marginLeft' : m.maxLeft + 'px'});
 				// disable the right button
 				this.enableLeft();
 			} else {
 				// move the collection to the left
-				transitions.byRules(this.cfg.list, {'marginLeft' : centerLeft + 'px'});
+				useful.transitions.byRules(this.cfg.list, {'marginLeft' : centerLeft + 'px'});
 				// enable the buttons
 				this.enableBoth();
 			}
@@ -210,163 +210,5 @@
 			return function () { context.right(); return false; };
 		};
 	};
-
-	/*
-		useful.transitions.js
-	*/
-
-	// private functions
-	var transitions = transitions || {};
-
-	// checks the compatibility of CSS3 transitions for this browser
-	transitions.compatibility = function () {
-		var eventName, newDiv, empty;
-		// create a test div
-		newDiv = document.createElement('div');
-		// use various tests for transition support
-		if (typeof(newDiv.style.MozTransition) !== 'undefined') { eventName = 'transitionend'; }
-		try { document.createEvent('OTransitionEvent'); eventName = 'oTransitionEnd'; } catch (e) { empty = null; }
-		try { document.createEvent('WebKitTransitionEvent'); eventName = 'webkitTransitionEnd'; } catch (e) { empty = null; }
-		try { document.createEvent('transitionEvent'); eventName = 'transitionend'; } catch (e) { empty = null; }
-		// remove the test div
-		newDiv = empty;
-		// pass back working event name
-		return eventName;
-	};
-
-	// applies a list of rules
-	transitions.byRules = function (element, rules, endEventHandler) {
-		var rule, endEventName, endEventFunction;
-		// validate the input
-		rules.transitionProperty = rules.transitionProperty || 'all';
-		rules.transitionDuration = rules.transitionDuration || '300ms';
-		rules.transitionTimingFunction = rules.transitionTimingFunction || 'ease';
-		endEventHandler = endEventHandler || function () {};
-		endEventName = transitions.compatibility();
-		// if CSS3 transitions are available
-		if (typeof endEventName !== 'undefined') {
-			// set the onComplete handler and immediately remove it afterwards
-			element.addEventListener(endEventName, endEventFunction = function () {
-				endEventHandler();
-				element.removeEventListener(endEventName, endEventFunction, true);
-			}, true);
-			// for all rules
-			for (rule in rules) {
-				if (rules.hasOwnProperty(rule)) {
-					// implement the prefixed value
-					element.style[transitions.compatibility(rule)] = rules[rule];
-					// implement the value
-					element.style[rule] = rules[rule];
-				}
-			}
-		// else if jQuery is available
-		} else if (typeof jQuery !== 'undefined') {
-			var jQueryEasing, jQueryDuration;
-			// pick the equivalent jQuery animation function
-			jQueryEasing = (rules.transitionTimingFunction.match(/ease/gi)) ? 'swing' : 'linear';
-			jQueryDuration = parseInt(rules.transitionDuration.replace(/s/g, '000').replace(/ms/g, ''), 10);
-			// remove rules that will make Internet Explorer complain
-			delete rules.transitionProperty;
-			delete rules.transitionDuration;
-			delete rules.transitionTimingFunction;
-			// use animate from jQuery
-			jQuery(element).animate(
-				rules,
-				jQueryDuration,
-				jQueryEasing,
-				endEventHandler
-			);
-		// else
-		} else {
-			// for all rules
-			for (rule in rules) {
-				if (rules.hasOwnProperty(rule)) {
-					// implement the prefixed value
-					element.style[transitions.compatibility(rule)] = rules[rule];
-					// implement the value
-					element.style[rule] = rules[rule];
-				}
-			}
-			// call the onComplete handler
-			endEventHandler();
-		}
-	};
-
-	/*
-		useful.polyfills.js
-	*/
-
-	// private functions
-	var polyfills = polyfills || {};
-
-	// allow addEventListener (https://gist.github.com/jonathantneal/3748027)
-	polyfills.addEventListener = function () {
-		!window.addEventListener && (function (WindowPrototype, DocumentPrototype, ElementPrototype, addEventListener, removeEventListener, dispatchEvent, registry) {
-			WindowPrototype[addEventListener] = DocumentPrototype[addEventListener] = ElementPrototype[addEventListener] = function (type, listener) {
-				var target = this;
-				registry.unshift([target, type, listener, function (event) {
-					event.currentTarget = target;
-					event.preventDefault = function () { event.returnValue = false; };
-					event.stopPropagation = function () { event.cancelBubble = true; };
-					event.target = event.srcElement || target;
-					listener.call(target, event);
-				}]);
-				this.attachEvent("on" + type, registry[0][3]);
-			};
-			WindowPrototype[removeEventListener] = DocumentPrototype[removeEventListener] = ElementPrototype[removeEventListener] = function (type, listener) {
-				for (var index = 0, register; register = registry[index]; ++index) {
-					if (register[0] == this && register[1] == type && register[2] == listener) {
-						return this.detachEvent("on" + type, registry.splice(index, 1)[0][3]);
-					}
-				}
-			};
-			WindowPrototype[dispatchEvent] = DocumentPrototype[dispatchEvent] = ElementPrototype[dispatchEvent] = function (eventObject) {
-				return this.fireEvent("on" + eventObject.type, eventObject);
-			};
-		})(Window.prototype, HTMLDocument.prototype, Element.prototype, "addEventListener", "removeEventListener", "dispatchEvent", []);
-	};
-
-	// allow console.log
-	polyfills.consoleLog = function () {
-		if (!window.console) {
-			window.console = {};
-			window.console.log = function () {
-				// if the reporting panel doesn't exist
-				var a, b, messages = '', reportPanel = document.getElementById('reportPanel');
-				if (!reportPanel) {
-					// create the panel
-					reportPanel = document.createElement('DIV');
-					reportPanel.id = 'reportPanel';
-					reportPanel.style.background = '#fff none';
-					reportPanel.style.border = 'solid 1px #000';
-					reportPanel.style.color = '#000';
-					reportPanel.style.fontSize = '12px';
-					reportPanel.style.padding = '10px';
-					reportPanel.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
-					reportPanel.style.right = '10px';
-					reportPanel.style.bottom = '10px';
-					reportPanel.style.width = '180px';
-					reportPanel.style.height = '320px';
-					reportPanel.style.overflow = 'auto';
-					reportPanel.style.zIndex = '100000';
-					reportPanel.innerHTML = '&nbsp;';
-					// store a copy of this node in the move buffer
-					document.body.appendChild(reportPanel);
-				}
-				// truncate the queue
-				var reportString = (reportPanel.innerHTML.length < 1000) ? reportPanel.innerHTML : reportPanel.innerHTML.substring(0, 800);
-				// process the arguments
-				for (a = 0, b = arguments.length; a < b; a += 1) {
-					messages += arguments[a] + '<br/>';
-				}
-				// output the queue to the panel
-				reportPanel.innerHTML = messages + reportString;
-			};
-		}
-	};
-
-	// for immediate use
-	polyfills.addEventListener();
-	polyfills.consoleLog();
 
 }(window.useful = window.useful || {}));

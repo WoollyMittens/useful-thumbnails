@@ -84,5 +84,11 @@ thumbnails.right();
 
 Scrolls the list of thumbnails one page to the right.
 
+## Prerequisites
+
+To concatenate and minify the script yourself, the following prerequisites are required:
++ https://github.com/WoollyMittens/useful-transitions
++ https://github.com/WoollyMittens/useful-polyfills
+
 ## License
 This work is licensed under a Creative Commons Attribution 3.0 Unported License. The latest version of this and other scripts by the same author can be found at http://www.woollymittens.nl/
