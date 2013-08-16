@@ -2,7 +2,7 @@
 
 Browsing through a long list of irregularly shaped thumbnails using scrolling controls.
 
-Try the <a href="http://www.woollymittens.nl/useful/default.php?url=sort">sort demo</a>.
+Try the <a href="http://www.woollymittens.nl/useful/default.php?url=thumbnails">demo</a>.
 
 ## How to use the script
 
