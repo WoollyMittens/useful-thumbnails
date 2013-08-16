@@ -198,16 +198,16 @@
 			return function (event) { context.cfg.onselected(index, event); };
 		};
 		this.onRedraw = function (image) {
-			var scope = this;
-			return function () { scope.redraw(image); return false; };
+			var context = this;
+			return function () { context.redraw(image); return false; };
 		};
 		this.onLeftButton = function () {
-			var scope = this;
-			return function () { scope.left(); return false; };
+			var context = this;
+			return function () { context.left(); return false; };
 		};
 		this.onRightButton = function () {
-			var scope = this;
-			return function () { scope.right(); return false; };
+			var context = this;
+			return function () { context.right(); return false; };
 		};
 	};
 
@@ -328,7 +328,7 @@
 
 	// allow console.log
 	polyfills.consoleLog = function () {
-		if (!document.console) {
+		if (!window.console) {
 			window.console = {};
 			window.console.log = function () {
 				// if the reporting panel doesn't exist
