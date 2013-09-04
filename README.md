@@ -4,7 +4,7 @@ Browsing through a long list of irregularly shaped thumbnails using scrolling co
 
 Try the <a href="http://www.woollymittens.nl/useful/default.php?url=thumbnails">demo</a>.
 
-## How to use the script
+## How to include the script
 
 The stylesheet is best included in the header of the document.
 
@@ -15,7 +15,7 @@ The stylesheet is best included in the header of the document.
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful.thumbnails.js"></script>
+<script src="./js/thumbnails.min.js"></script>
 ```
 
 To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*. To provide an alternative for *document.querySelectorAll* and CSS3 animations in Internet Explorer 8 and lower, include *jQuery*.
@@ -27,13 +27,14 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 <![endif]-->
 ```
 
-## Constructor
+## How to start the script
 
 ```javascript
 var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
 	'square' : true,
 	'onselected' : function (index, event) {}
 });
+thumbnails.start();
 ```
 
 This is the safest way of starting the script, but allows for only one target element at a time.
@@ -48,15 +49,7 @@ This is the safest way of starting the script, but allows for only one target el
 
 **event : {event object}** - The event object of the click.
 
-## Methods
-
-### Start
-
-```javascript
-thumbnails.start();
-```
-
-Start the functionality
+## How to control the script
 
 ### Focus
 
