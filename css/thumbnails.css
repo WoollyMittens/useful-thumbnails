@@ -8,7 +8,7 @@
   /*
   	Buttons
   */
-  .thumbnails {
+  .thumbnails-scroller {
     display: block;
     height: 128px;
     margin: 0;
@@ -17,14 +17,14 @@
     position: relative;
     width: 100%;
   }
-  .thumbnails * {
+  .thumbnails-scroller * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
-  .thumbnails ul {
+  .thumbnails-scroller ul {
     -webkit-transition: margin-left ease;
     -webkit-transition-delay: 500ms;
     -moz-transition: margin-left ease 500ms;
@@ -36,16 +36,16 @@
     white-space: nowrap;
     width: auto;
   }
-  .thumbnails ul li {
+  .thumbnails-scroller ul li {
     display: inline-block;
     list-style-type: none;
   }
-  .thumbnails ul li a {
+  .thumbnails-scroller ul li a {
     background: #ff6a00;
     display: inline-block;
     margin-left: 1px;
   }
-  .thumbnails ul li a img {
+  .thumbnails-scroller ul li a img {
     -webkit-transition: opacity ease;
     -webkit-transition-delay: 500ms;
     -moz-transition: opacity ease 500ms;
@@ -55,11 +55,11 @@
     height: 128px;
     vertical-align: middle;
   }
-  .thumbnails ul li a:hover img, .thumbnails ul li a.tn-active img {
+  .thumbnails-scroller ul li a:hover img, .thumbnails-scroller ul li a.tn-active img {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
     opacity: 0.5;
   }
-  .thumbnails button {
+  .thumbnails-scroller button {
     overflow: hidden;
     position: relative;
     text-align: left;
@@ -74,7 +74,7 @@
     height: auto;
     position: absolute;
   }
-  .thumbnails button:before {
+  .thumbnails-scroller button:before {
     content: '';
     display: block;
     height: 32px;
@@ -86,37 +86,37 @@
     width: 32px;
     background-image: url(../img/thumbnails.png);
   }
-  .thumbnails button.tn-enabled:hover {
+  .thumbnails-scroller button.tn-enabled:hover {
     background: #ff9800;
   }
-  .thumbnails button.tn-disabled {
+  .thumbnails-scroller button.tn-disabled {
     background: #7f7f7f;
   }
-  .thumbnails button.tn-left {
+  .thumbnails-scroller button.tn-left {
     bottom: 0;
     left: 0;
     top: 0;
     width: 10%;
   }
-  .thumbnails button.tn-left:before {
+  .thumbnails-scroller button.tn-left:before {
     background-position: 0 0;
   }
-  .thumbnails button.tn-right {
+  .thumbnails-scroller button.tn-right {
     bottom: 0;
     right: 0;
     top: 0;
     width: 10%;
   }
-  .thumbnails button.tn-right:before {
+  .thumbnails-scroller button.tn-right:before {
     background-position: 0 -32px;
   }
-  .thumbnails.tn-square ul li a {
+  .thumbnails-scroller.tn-square ul li a {
     height: 128px;
     overflow: hidden;
     position: relative;
     width: 128px;
   }
-  .thumbnails.tn-square ul li a img {
+  .thumbnails-scroller.tn-square ul li a img {
     height: auto;
     left: 50%;
     margin-left: -64px;
