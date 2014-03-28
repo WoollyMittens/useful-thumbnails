@@ -9,21 +9,20 @@ Try the <a href="http://www.woollymittens.nl/useful/default.php?url=useful-thumb
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/thumbnails.css"/>
+<link rel="stylesheet" href="./css/useful-thumbnails.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/thumbnails.min.js"></script>
+<script src="./js/useful-thumbnails.js"></script>
 ```
 
-To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*. To provide an alternative for *document.querySelectorAll* and CSS3 animations in Internet Explorer 8 and lower, include *jQuery*.
+To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*.
 
 ```html
 <!--[if lte IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <![endif]-->
 ```
 
@@ -34,7 +33,6 @@ var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
 	'square' : true,
 	'onselected' : function (index, event) {}
 });
-thumbnails.start();
 ```
 
 This is the safest way of starting the script, but allows for only one target element at a time.
@@ -77,11 +75,20 @@ thumbnails.right();
 
 Scrolls the list of thumbnails one page to the right.
 
-## Prerequisites
+## How to build the script
 
-To concatenate and minify the script yourself, the following prerequisites are required:
-+ https://github.com/WoollyMittens/useful-transitions
-+ https://github.com/WoollyMittens/useful-polyfills
+This project uses node.js from http://nodejs.org/
+
+This project uses grunt.js from http://gruntjs.com/
+
+The following commands are available for development:
++ `npm install` - Installs the prerequisites.
++ `grunt import` - Re-imports libraries from supporting projects to `./src/libs/` if available under the same folder tree.
++ `grunt dev` - Builds the project for development purposes.
++ `grunt prod` - Builds the project for deployment purposes.
++ `grunt watch` - Continuously recompiles updated files during development sessions.
++ `grunt serve` - Serves the project on a temporary web server at http://localhost:8000/ .
 
 ## License
+
 This work is licensed under a Creative Commons Attribution 3.0 Unported License. The latest version of this and other scripts by the same author can be found at http://www.woollymittens.nl/

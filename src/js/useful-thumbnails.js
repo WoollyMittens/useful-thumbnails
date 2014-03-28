@@ -27,6 +27,8 @@
 			this.clean();
 			// add the buttons to the scroller
 			this.construct();
+			// disable the start function so it can't be started twice
+			this.start = function () {};
 		};
 		this.clean = function () {
 			// clean the list of white space
@@ -209,6 +211,8 @@
 			var context = this;
 			return function () { context.right(); return false; };
 		};
+		// go
+		this.start();
 	};
 
 }(window.useful = window.useful || {}));
