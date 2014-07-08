@@ -1,118 +1,104 @@
+@import "compass/css3";
+@import "compass/utilities";
+@import "mixins";
 /*
 	Reference Styling for An Interactive Row of Thumbnails
 */
-
-@media all {
-
-	@import "compass/css3";
-	@import "compass/utilities";
-	@import "definitions";
-	@import "typography";
-
-	$icon-size : 128;
-
-	.thumbnails-scroller {
-		display : block;
-		height : $icon-size + px;
+$icon-size : 128;
+.thumbnails-scroller {
+	display : block;
+	height : $icon-size + px;
+	margin : 0;
+	padding : 0;
+	overflow : hidden;
+	position : relative;
+	width : 100%;
+	* {
+		@include box-sizing(border-box);
 		margin : 0;
 		padding : 0;
-		overflow : hidden;
-		position : relative;
-		width : 100%;
-		* {
-			@include box-sizing(border-box);
-			margin : 0;
-			padding : 0;
-		}
-		ul {
-			@include transition(margin-left ease 500ms);
-			display : block;
-			margin : 0;
-			padding : 0 10%;
-			white-space : nowrap;
-			width : auto;
-			li {
+	}
+	ul {
+		@include transition(margin-left ease 500ms);
+		display : block;
+		margin : 0;
+		padding : 0 10%;
+		white-space : nowrap;
+		width : auto;
+		li {
+			display : inline-block;
+			list-style-type : none;
+			a {
+				background : $color-passive;
 				display : inline-block;
-				list-style-type : none;
-				a {
-					background : $color-passive;
-					display : inline-block;
-					margin-left : 1px;
-					img {
-						@include transition(opacity ease 500ms);
-						border : none;
-						height : $icon-size + px;
-						vertical-align : middle;
-					}
-					&:hover img, &.tn-active img {
-						@include opacity(0.5);
-					}
+				margin-left : 1px;
+				img {
+					@include transition(opacity ease 500ms);
+					border : none;
+					height : $icon-size + px;
+					vertical-align : middle;
+				}
+				&:hover img, &.tn-active img {
+					@include opacity(0.5);
 				}
 			}
 		}
-		button {
-			@include iconParent(48);
-			cursor : pointer;
-			background : $color-passive;
-			display : block;
-			height : auto;
-			position : absolute;
+	}
+	button {
+		@include iconParent(48);
+		cursor : pointer;
+		background : $color-passive;
+		display : block;
+		height : auto;
+		position : absolute;
+		&:before {
+			@include iconCenter(32);
+			background-image : url(../img/thumbnails.png);
+		}
+		&.tn-enabled:hover {
+			background : $color-hover;
+		}
+		&.tn-disabled {
+			background : $color-disabled;
+		}
+		&.tn-left {
+			bottom : 0;
+			left : 0;
+			top : 0;
+			width : 10%;
 			&:before {
-				@include iconCenter(32);
-				background-image : url(../img/thumbnails.png);
-			}
-			&.tn-enabled:hover {
-				background : $color-hover;
-			}
-			&.tn-disabled {
-				background : $color-disabled;
-			}
-			&.tn-left {
-				bottom : 0;
-				left : 0;
-				top : 0;
-				width : 10%;
-				&:before {
-					background-position : 0 0;
-				}
-			}
-			&.tn-right {
-				bottom : 0;
-				right : 0;
-				top : 0;
-				width : 10%;
-				&:before {
-					background-position : 0 -32px;
-				}
+				background-position : 0 0;
 			}
 		}
-		&.tn-square {
-			ul {
-				li {
-					a {
-						height : $icon-size + px;
-						overflow : hidden;
-						position : relative;
-						width : $icon-size + px;
-						img {
-							height : auto;
-							left : 50%;
-							margin-left : -($icon-size/2) + px;
-							margin-top : -($icon-size/2) + px;
-							position : absolute;
-							top : 50%;
-						}
+		&.tn-right {
+			bottom : 0;
+			right : 0;
+			top : 0;
+			width : 10%;
+			&:before {
+				background-position : 0 -32px;
+			}
+		}
+	}
+	&.tn-square {
+		ul {
+			li {
+				a {
+					height : $icon-size + px;
+					overflow : hidden;
+					position : relative;
+					width : $icon-size + px;
+					img {
+						height : auto;
+						left : 50%;
+						margin-left : -($icon-size/2) + px;
+						margin-top : -($icon-size/2) + px;
+						position : absolute;
+						top : 50%;
 					}
 				}
 			}
 		}
 	}
-
 }
 
-@media (min-width: 1200px) {}
-@media (min-width: 980px) and (max-width: 1199px) {}
-@media (min-width: 768px) and (max-width: 979px) {}
-@media (max-width: 767px) {}
-@media (max-width: 480px) {}
-@media print {}
