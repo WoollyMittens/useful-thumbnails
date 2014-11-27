@@ -1,29 +1,29 @@
 /*
-	Constants
+Constants
 */
 /*
-	Hides text in the margin
+Hides text in the margin
 */
 /*
-	Turns a button into an icon
+Turns a button into an icon
 */
 /*
-	Centres a graphic or glyph inside an icon
+Centres a graphic or glyph inside an icon
 */
 /*
-	Offers both the pixel and rem value of a single property
+Offers both the pixel and rem value of a single property
 */
 /*
-	Offers both the pixel and rem values of a shorthand property
+Offers both the pixel and rem values of a shorthand property
 */
 /*
-	Offers the text size as both the pixel and rem value
+Offers the text size as both the pixel and rem value
 */
 /*
-	Adds vendor prefixed to a property
+Adds vendor prefixed to a property
 */
 /*
-	Applies the "clearfix" hack to a container with floating content
+Applies the "clearfix" hack to a container with floating content
 */
 /*
 	Reference Styling for An Interactive Row of Thumbnails
@@ -46,10 +46,8 @@
 }
 /* line 21, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller ul {
-  -webkit-transition: margin-left ease;
-  -webkit-transition-delay: 500ms;
-  -webkit-transition: margin-left ease 500ms;
-          transition: margin-left ease 500ms;
+  -webkit-transition: margin-left 500ms ease;
+  transition: margin-left 500ms ease;
   display: block;
   margin: 0;
   padding: 0 10%;
@@ -69,10 +67,8 @@
 }
 /* line 35, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller ul li a img {
-  -webkit-transition: opacity ease;
-  -webkit-transition-delay: 500ms;
-  -webkit-transition: opacity ease 500ms;
-          transition: opacity ease 500ms;
+  -webkit-transition: opacity 500ms ease;
+  transition: opacity 500ms ease;
   border: none;
   height: 128px;
   vertical-align: middle;
@@ -94,11 +90,12 @@
   text-indent: -999em;
   cursor: pointer;
   background: #ff6a00;
+  border: none;
   display: block;
   height: auto;
   position: absolute;
 }
-/* line 54, ../../src/scss/useful-thumbnails.scss */
+/* line 55, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller button:before {
   content: "";
   display: block;
@@ -115,44 +112,44 @@
   top: 50%;
   background-image: url(../img/thumbnails.png);
 }
-/* line 58, ../../src/scss/useful-thumbnails.scss */
+/* line 59, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller button.tn-enabled:hover {
   background: #ff9800;
 }
-/* line 61, ../../src/scss/useful-thumbnails.scss */
+/* line 62, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller button.tn-disabled {
   background: #7f7f7f;
 }
-/* line 64, ../../src/scss/useful-thumbnails.scss */
+/* line 65, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller button.tn-left {
   bottom: 0;
   left: 0;
   top: 0;
   width: 10%;
 }
-/* line 69, ../../src/scss/useful-thumbnails.scss */
+/* line 70, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller button.tn-left:before {
   background-position: 0 0;
 }
-/* line 73, ../../src/scss/useful-thumbnails.scss */
+/* line 74, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller button.tn-right {
   bottom: 0;
   right: 0;
   top: 0;
   width: 10%;
 }
-/* line 78, ../../src/scss/useful-thumbnails.scss */
+/* line 79, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller button.tn-right:before {
   background-position: 0 -32px;
 }
-/* line 86, ../../src/scss/useful-thumbnails.scss */
+/* line 87, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller.tn-square ul li a {
   height: 128px;
   overflow: hidden;
   position: relative;
   width: 128px;
 }
-/* line 91, ../../src/scss/useful-thumbnails.scss */
+/* line 92, ../../src/scss/useful-thumbnails.scss */
 .thumbnails-scroller.tn-square ul li a img {
   height: auto;
   left: 50%;

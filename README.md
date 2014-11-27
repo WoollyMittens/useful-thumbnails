@@ -35,8 +35,6 @@ var thumbnails = new useful.Thumbnails( document.getElementById('id'), {
 });
 ```
 
-This is the safest way of starting the script, but allows for only one target element at a time.
-
 **id : {string}** - The ID attribute of an element somewhere in the document.
 
 **square : {boolean}** - Optional boolean to centre images into fixed squares or retain their irregular shapes.

@@ -47,15 +47,16 @@
 				<script>
 				//<!--
 					// create a new instance of the script
-					var thumbnails = new useful.Thumbnails( document.getElementById('thumbnailsExample'), {
+					var thumbnails = new useful.Thumbnails().init({
+						'element' : document.getElementById('thumbnailsExample'),
 						'square' : true,
 						'onselected' : function (index, event) { console.log('thumbnail:', index, event); }
 					});
-					// highlight and centre a specific thumbnail
-					thumbnails.focus(2);
 				//-->
 				</script>
 				<!-- Cut above this -->
+
+				Activate item <a href="javascript:thumbnails.focus(0);">0</a>, <a href="javascript:thumbnails.focus(1);">1</a>, <a href="javascript:thumbnails.focus(2);">2</a>.
 
 			</aside>
 		</section>

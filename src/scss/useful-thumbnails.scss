@@ -48,6 +48,7 @@ $icon-size : 128;
 		@include iconParent(48);
 		cursor : pointer;
 		background : $color-passive;
+		border : none;
 		display : block;
 		height : auto;
 		position : absolute;
@@ -101,4 +102,3 @@ $icon-size : 128;
 		}
 	}
 }
-
