@@ -37,10 +37,12 @@ Applies the "clearfix" hack to a container with floating content
   position: relative;
   width: 100%; }
   .thumbnails-scroller * {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0; }
   .thumbnails-scroller ul {
+    -webkit-transition: margin-left ease 500ms;
     transition: margin-left ease 500ms;
     display: block;
     margin: 0;
@@ -55,6 +57,7 @@ Applies the "clearfix" hack to a container with floating content
         display: inline-block;
         margin-left: 1px; }
         .thumbnails-scroller ul li a img {
+          -webkit-transition: opacity ease 500ms;
           transition: opacity ease 500ms;
           border: none;
           height: 128px;
