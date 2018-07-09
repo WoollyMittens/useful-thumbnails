@@ -55,6 +55,7 @@ $icon-size : 128;
 		&:before {
 			@include iconCenter(32);
 			background-image : url(../img/thumbnails.png);
+			background-size: auto;
 		}
 		&.tn-enabled:hover {
 			background : $color-hover;

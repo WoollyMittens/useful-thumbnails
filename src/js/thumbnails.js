@@ -1,20 +1,15 @@
 /*
 	Source:
-	van Creij, Maurice (2014). "useful.thumbnails.js: Scrolling through a long list of thumbnails using paging controls.", version 20141127, http://www.woollymittens.nl/.
+	van Creij, Maurice (2018). "thumbnails.js: Scrolling through a long list of thumbnails using paging controls.", http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
 */
 
-// create the global object if needed
-var useful = useful || {};
-
-// extend the global object
-useful.Thumbnails = function () {
+// establish the class
+var Thumbnails = function (config) {
 
 	// PROPERTIES
-
-	"use strict";
 
 	// METHODS
 
@@ -53,20 +48,20 @@ useful.Thumbnails = function () {
 		this.config.leftButton = document.createElement('button');
 		this.config.leftButton.innerHTML = '&lt;';
 		this.config.leftButton.className = 'tn-left tn-disabled';
-		this.config.leftButton.onclick = this.onLeftButton();
+		this.config.leftButton.onclick = this.onLeftButton.bind(this);
 		this.element.appendChild(this.config.leftButton);
 		// add the right button
 		this.config.rightButton = document.createElement('button');
 		this.config.rightButton.innerHTML = '&gt;';
 		this.config.rightButton.className = 'tn-right tn-enabled';
-		this.config.rightButton.onclick = this.onRightButton();
+		this.config.rightButton.onclick = this.onRightButton.bind(this);
 		this.element.appendChild(this.config.rightButton);
 		// centre the thumbnails if square
 		if (this.config.square) {
 			// for all thumbnails
 			for (a = 0, b = this.config.images.length; a < b; a += 1) {
 				// add an onclick handler
-				this.config.links[a].addEventListener('click', this.onSelected(a));
+				this.config.links[a].addEventListener('click', this.onSelected.bind(this, a));
 				// re-centre when the image changes
 				this.config.images.onload = this.center(this.config.images[a]);
 				// centre the image
@@ -133,12 +128,12 @@ useful.Thumbnails = function () {
 		// limit the distance
 		if (m.currentLeft + m.pageLeft < 0) {
 			// move the collection to the right
-			useful.transitions.byRules(this.config.list, {'marginLeft' : (m.currentLeft + m.pageLeft) + 'px'});
+			transitions.byRules(this.config.list, {'marginLeft' : (m.currentLeft + m.pageLeft) + 'px'});
 			// enable the buttons
 			this.enableBoth();
 		} else {
 			// stop the position at its max
-			useful.transitions.byRules(this.config.list, {'marginLeft' : '0px'});
+			transitions.byRules(this.config.list, {'marginLeft' : '0px'});
 			// disable the left button
 			this.enableRight();
 		}
@@ -152,12 +147,12 @@ useful.Thumbnails = function () {
 		// limit the distance
 		if (m.currentLeft - m.pageLeft > m.maxLeft) {
 			// move the collection to the left
-			useful.transitions.byRules(this.config.list, {'marginLeft' : (m.currentLeft - m.pageLeft) + 'px'});
+			transitions.byRules(this.config.list, {'marginLeft' : (m.currentLeft - m.pageLeft) + 'px'});
 			// enable the button
 			this.enableBoth();
 		} else {
 			// stop the position at its max
-			useful.transitions.byRules(this.config.list, {'marginLeft' : m.maxLeft + 'px'});
+			transitions.byRules(this.config.list, {'marginLeft' : m.maxLeft + 'px'});
 			// disable the right button
 			this.enableLeft();
 		}
@@ -178,17 +173,17 @@ useful.Thumbnails = function () {
 		// limit the distance
 		if (centerLeft > 0) {
 			// stop the position at its max
-			useful.transitions.byRules(this.config.list, {'marginLeft' : '0px'});
+			transitions.byRules(this.config.list, {'marginLeft' : '0px'});
 			// disable the left button
 			this.enableRight();
 		} else if (centerLeft < m.maxLeft) {
 			// move the collection to the left
-			useful.transitions.byRules(this.config.list, {'marginLeft' : m.maxLeft + 'px'});
+			transitions.byRules(this.config.list, {'marginLeft' : m.maxLeft + 'px'});
 			// disable the right button
 			this.enableLeft();
 		} else {
 			// move the collection to the left
-			useful.transitions.byRules(this.config.list, {'marginLeft' : centerLeft + 'px'});
+			transitions.byRules(this.config.list, {'marginLeft' : centerLeft + 'px'});
 			// enable the buttons
 			this.enableBoth();
 		}
@@ -211,29 +206,24 @@ useful.Thumbnails = function () {
 
 	// EVENTS
 
-	this.onSelected = function (index) {
-		var context = this;
-		return function (event) { context.config.onselected(index, event); };
+	this.onSelected = function (index, evt) {
+		this.config.onselected(index, evt);
 	};
 
-	this.onRedraw = function (image) {
-		var context = this;
-		return function () { context.redraw(image); return false; };
+	this.onLeftButton = function (evt) {
+		evt.preventDefault();
+		this.left();
 	};
 
-	this.onLeftButton = function () {
-		var context = this;
-		return function () { context.left(); return false; };
+	this.onRightButton = function (evt) {
+		evt.preventDefault();
+		this.right();
 	};
 
-	this.onRightButton = function () {
-		var context = this;
-		return function () { context.right(); return false; };
-	};
-
+	this.init(config);
 };
 
 // return as a require.js module
 if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Thumbnails;
+	exports = module.exports = Thumbnails;
 }

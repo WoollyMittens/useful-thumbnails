@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>useful-thumbnails.js: Scrolling Thumbnails</title>
+		<title>thumbnails.js: Scrolling Thumbnails</title>
 		<style>
 			html { font-family:Sans-Serif; font-size:75%; height:100%; }
 			body { _height:100%; line-height:180%; margin:0; min-height:100%; padding:1%; }
@@ -11,12 +11,6 @@
 			.example-left > article, .example-left > aside { width:48%; padding:1%; float:left; }
 			.example-right > article, .example-right > aside { width:48%; padding:1%; float:right; }
 		</style>
-		<!--[if lte IE 9]>
-			<meta http-equiv="imagetoolbar" content="no"/>
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-		<![endif]-->
 	</head>
 	<body>
 		<section class="example example-left">
@@ -28,7 +22,7 @@
 			<aside>
 
 				<!-- Cut below this -->
-				<style>@import url("./css/useful-thumbnails.css");</style>
+				<style>@import url("./css/thumbnails.css");</style>
 				<figure class="thumbnails-scroller" id="thumbnailsExample">
 					<ul>
 						<li><a href="#"><img alt="" src="./img/photo_0.jpg"/></a></li>
@@ -43,11 +37,11 @@
 						<li><a href="#"><img alt="" src="./img/photo_9.jpg"/></a></li>
 					</ul>
 				</figure>
-				<script src="./js/useful-thumbnails.js"></script>
+				<script src="./js/thumbnails.js"></script>
 				<script>
 				//<!--
 					// create a new instance of the script
-					var thumbnails = new useful.Thumbnails().init({
+					var thumbnails = new Thumbnails({
 						'element' : document.getElementById('thumbnailsExample'),
 						'square' : true,
 						'onselected' : function (index, event) { console.log('thumbnail:', index, event); }
