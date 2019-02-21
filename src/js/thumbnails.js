@@ -224,6 +224,5 @@ var Thumbnails = function (config) {
 };
 
 // return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = Thumbnails;
-}
+if (typeof define != 'undefined') define(['thumbnails'], function () { return Thumbnails });
+if (typeof module != 'undefined') module.exports = Thumbnails;
