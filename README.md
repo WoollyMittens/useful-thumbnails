@@ -9,13 +9,32 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-thumbnails">
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/thumbnails.css"/>
+<link rel="stylesheet" href="css/thumbnails.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/thumbnails.js"></script>
+<script src="lib/transitions.js"></script>
+<script src="js/thumbnails.js"></script>
+```
+
+Or use [Require.js](https://requirejs.org/).
+
+```js
+requirejs([
+	'lib/transitions.js',
+	'js/thumbnails.js'
+], function(transitions, Thumbnails) {
+	...
+});
+```
+
+Or import into an MVC framework.
+
+```js
+var transitions = require('lib/transitions.js');
+var Thumbnails = require('js/Thumbnails.js');
 ```
 
 ## How to start the script
